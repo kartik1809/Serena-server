@@ -437,36 +437,7 @@ const refreshScores = () => {
     totalScore: 0,
     wellbeingScore: 0,
   };
-
-  dayWiseScores = Array(7).fill({
-    focusScore: 0,
-    moodScore: 0,
-    creativityScore: 0,
-    productivityScore: 0,
-    sentimentScore: 0,
-    contentScore: 0,
-    totalScore: 0,
-    wellbeingScore: 0,
-  });
-
-  maxDayWiseScores = Array(7).fill({
-    focusScore: 0,
-    moodScore: 0,
-    creativityScore: 0,
-    productivityScore: 0,
-    sentimentScore: 0,
-    contentScore: 0,
-    totalScore: 0,
-    wellbeingScore: 0,
-  });
-
-  console.log(
-    "Scores refreshed:",
-    parameters,
-    maxScore,
-    dayWiseScores,
-    maxDayWiseScores
-  );
+  
 };
 
 export let AnalyzeScores = (userDomain, userContent) => {
