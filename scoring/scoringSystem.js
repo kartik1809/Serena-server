@@ -351,14 +351,14 @@ let analyzeContent=(content)=>{
     content.map(entry=>{
         let responseByGEMINI=entry.category;
         let metrics=JSON.parse(responseByGEMINI.slice(7,responseByGEMINI.length-3));
-        parameters.focusScore+=ProductivityWeights[metrics.Productivity]*100;
-        parameters.moodScore+=MoodFactorWeights[metrics.MoodFactor]*100;
-        parameters.creativityScore+=CreativityWeights[metrics.Creativity]*100;
-        parameters.productivityScore+=ProductivityWeights[metrics.Productivity]*100;
-        parameters.sentimentScore+=SentimentWeights[metrics.Sentiment]*100;
-        parameters.contentScore+=CategoryWeights[metrics.Category]*100;
-        parameters.wellbeingScore+=MoodFactorWeights[metrics.MoodFactor]+SentimentWeights[metrics.Sentiment];
-        parameters.totalScore+=parameters.focusScore+parameters.moodScore+parameters.creativityScore+parameters.productivityScore+parameters.sentimentScore+parameters.contentScore;
+        parameters.focusScore+=ProductivityWeights[metrics.Productivity]*100|| 0;
+        parameters.moodScore+=MoodFactorWeights[metrics.MoodFactor]*100|| 0;
+        parameters.creativityScore+=CreativityWeights[metrics.Creativity]*100|| 0;
+        parameters.productivityScore+=ProductivityWeights[metrics.Productivity]*100|| 0;
+        parameters.sentimentScore+=SentimentWeights[metrics.Sentiment]*100|| 0;
+        parameters.contentScore+=CategoryWeights[metrics.Category]*100|| 0;
+        parameters.wellbeingScore+=(MoodFactorWeights[metrics.MoodFactor]+SentimentWeights[metrics.Sentiment]) || 0;
+        parameters.totalScore+=(parameters.focusScore+parameters.moodScore+parameters.creativityScore+parameters.productivityScore+parameters.sentimentScore+parameters.contentScore)/6;
     })
 }
 
