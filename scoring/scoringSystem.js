@@ -245,13 +245,19 @@ function getDayIndex(dayDate, currentDate = new Date()) {
 }
 
 let AnalyzeFocusScore = (day, metrics) => {
-  parameters.focusScore +=
-    ProductivityWeights[metrics.Productivity] * day.seconds * 100 || 0;
-  maxScore.focusScore += day.seconds * 100;
-  let dayIdx = getDayIndex(day.date);
-  dayWiseScores[dayIdx].focusScore +=
-    ProductivityWeights[metrics.Productivity] * day.seconds * 100 || 0;
-  maxDayWiseScores[dayIdx].focusScore += day.seconds * 100;
+//   parameters.focusScore +=
+//     ProductivityWeights[metrics.Productivity] * day.seconds * 100 || 0;
+//   maxScore.focusScore += day.seconds * 100;
+//   let dayIdx = getDayIndex(day.date);
+//   dayWiseScores[dayIdx].focusScore +=
+//     ProductivityWeights[metrics.Productivity] * day.seconds * 100 || 0;
+//   maxDayWiseScores[dayIdx].focusScore += day.seconds * 100;
+
+    parameters.focusScore += (parameters.moodScore + parameters.sentimentScore + parameters.productivityScore) || 0;
+    maxScore.focusScore += (maxScore.moodScore + maxScore.sentimentScore + maxScore.productivityScore);
+    let dayIdx = getDayIndex(day.date);
+    dayWiseScores[dayIdx].focusScore += (dayWiseScores[dayIdx].moodScore + dayWiseScores[dayIdx].sentimentScore + dayWiseScores[dayIdx].productivityScore) || 0;
+    maxDayWiseScores[dayIdx].focusScore += (maxDayWiseScores[dayIdx].moodScore + maxDayWiseScores[dayIdx].sentimentScore + maxDayWiseScores[dayIdx].productivityScore);
 };
 
 let AnalyzeMoodScore = (day, metrics) => {
@@ -437,7 +443,153 @@ const refreshScores = () => {
     totalScore: 0,
     wellbeingScore: 0,
   };
-  
+
+    dayWiseScores = [
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    ];
+
+    maxDayWiseScores = [
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    {
+        focusScore: 0,
+        moodScore: 0,
+        creativityScore: 0,
+        productivityScore: 0,
+        sentimentScore: 0,
+        contentScore: 0,
+        totalScore: 0,
+        wellbeingScore: 0,
+    },
+    ];
+
 };
 
 export let AnalyzeScores = (userDomain, userContent) => {
