@@ -372,10 +372,25 @@ let allTime = 0;
 let analyzeDomains = (domains) => {
   domains.map((domain) => {
     let responseByGEMINI = domain.category;
+
     let days = filterLast7Days(domain.days);
-    let metrics = JSON.parse(
-      responseByGEMINI.slice(7, responseByGEMINI.length - 3)
-    );
+    let metrics ;
+    console.log(responseByGEMINI);
+    try{
+      metrics = JSON.parse(
+        responseByGEMINI.slice(7, responseByGEMINI.length - 3)
+      );
+    }
+    catch(e){
+      metrics={
+        Category: "Others",
+        Productivity: "Others",
+        Sentiment: "Others",
+        Creativity: "Others",
+        MoodFactor: "Others",
+      }
+      return;
+    }
     visitedDomains[domain.name] = domain.allTime;
     allTime += domain.allTime.seconds;
     categoryData[metrics.Category] += 1;
@@ -395,9 +410,16 @@ let analyzeDomains = (domains) => {
 let analyzeContent = (content) => {
   content.map((entry) => {
     let responseByGEMINI = entry.category;
-    let metrics = JSON.parse(
-      responseByGEMINI.slice(7, responseByGEMINI.length - 3)
-    );
+    let metrics ;
+    try{
+      metrics = JSON.parse(
+        responseByGEMINI.slice(7, responseByGEMINI.length - 3)
+      );
+    }
+    catch(e){
+      
+      return;
+    }
     parameters.focusScore +=
       ProductivityWeights[metrics.Productivity] * 100 || 0;
     parameters.moodScore += MoodFactorWeights[metrics.MoodFactor] * 100 || 0;
