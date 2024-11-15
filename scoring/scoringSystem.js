@@ -444,6 +444,7 @@ let analyzeContent = (content) => {
 };
 
 const refreshScores = () => {
+  allTime=0;
   parameters = {
     focusScore: 0,
     moodScore: 0,
