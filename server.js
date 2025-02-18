@@ -23,7 +23,7 @@ mongoose.connect(CONNECTION_URL)
 const PORT=process.env.PORT || 5000;
 
 app.get('/',(req,res)=>{
-    res.send("Zenith Backend Activated :)");
+    res.send("Serena Backend Activated :)");
 });
 
 app.use('/auth',AuthRoute);
